@@ -1,8 +1,8 @@
 import psutil
 import requests
 import pandas as pd
-from tqdm import tqdm
 from bs4 import BeautifulSoup
+
 
 def load_prettify_page(url, headers):
     """
@@ -11,7 +11,7 @@ def load_prettify_page(url, headers):
     :param headers: headers for the request
     :return: BeautifulShop object
     """
-    page = requests.get(url, headers= headers)
+    page = requests.get(url, headers=headers)
     return BeautifulSoup(page.content)
 
 
@@ -44,22 +44,6 @@ def get_classification_info(book_webpage):
     return classification_info
 
 
-def get_other_info(book_webpage):
-    """
-    Gets the rest of the info provided by the publisher. This will vary on each book.
-    :param book_webpage: BeautifulSoup object of the page
-    :return: dictionary with all the info with a key-value structure
-    """
-    book_info = book_webpage.find("dl", {"class": "caracteristicas-prod data-sheet"})
-    keys = book_info.find_all("dt", {"class":"name"})
-    values = book_info.find_all("dd", {"class":"value"})
-    book_info = {}
-    for key, value in zip(keys, values):
-        book_info[key.string] = value.string
-
-    return book_info
-
-
 def get_publisher_and_date(book_webpage):
     """
     Gets the info of the editorial and the publishing date .
@@ -84,7 +68,7 @@ def get_description(book_webpage):
     :return: dictionary with the description of the book
     """
     description = ""
-    paragraphs = book_webpage.find("div", {"class":"p_leer_mas p_leer_mas_prod"}).find_all("p")
+    paragraphs = book_webpage.find("div", {"class": "p_leer_mas p_leer_mas_prod"}).find_all("p")
     for paragraph in paragraphs:
         description += paragraph.text + "\n"
     return {"description": description}
@@ -107,8 +91,8 @@ def get_other_info(book_webpage):
     :return: dictionary with all the info with a key-value structure
     """
     book_info = book_webpage.find("dl", {"class": "caracteristicas-prod data-sheet"})
-    keys = book_info.find_all("dt", {"class":"name"})
-    values = book_info.find_all("dd", {"class":"value"})
+    keys = book_info.find_all("dt", {"class": "name"})
+    values = book_info.find_all("dd", {"class": "value"})
     book_info = {}
     for key, value in zip(keys, values):
         book_info[key.string] = value.string
@@ -137,7 +121,7 @@ def scrape_book_info(url, headers):
 if __name__ == '__main__':
     XML_HEADERS = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-        "features":"xml"
+        "features": "xml"
     }
     HEADERS = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
