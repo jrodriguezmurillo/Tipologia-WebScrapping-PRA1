@@ -5,3 +5,4 @@ python-whois==0.8.0
 pandas==1.5.1
 tqdm==4.64.1
 psutil==5.9.4
+matplotlib==3.6.2
