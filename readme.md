@@ -10,7 +10,7 @@ En la entrega se incluyen:
  - ```memoria.pdf```: memoria de la práctica
  - ```source/pra1.py```: script con la ejecución del web scrappign
  - ```source/requirements.txt```: requirements
- - ```dataset/.txt```: penguinlibros_esp_catalog.csv
+ - ```dataset/penguinlibros_esp_catalog.csv```: dataset resultante en formato .csv
 
 Dataset:
 
